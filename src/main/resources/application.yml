@@ -1,0 +1,26 @@
+spring.cloud.stream:
+  deserializationExceptionHandler: sendToDlq
+  function:
+    definition: joinKtable
+
+    bindings:
+      joinKtable-in-0: person-case-input
+      joinKtable-in-1:
+        destination: ref-genre-case-input
+        consumer:
+          materializedAs : ref-genre-store
+      joinKtable-out-0: person-with-genre-output
+
+  kafka:
+    streams:
+      binder:
+        brokers: localhost:9092
+        applicationId: my-app
+        configuration:
+          state.dir: target/state_store
+          commit.interval.ms: 100
+          default:
+            key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+            value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+

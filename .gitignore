@@ -1,0 +1,22 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/**
+
+# Local Test
+src/test/java/errorfix
+src/test/resources/errorfix
+/target/
